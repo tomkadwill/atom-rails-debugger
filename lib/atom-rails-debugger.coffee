@@ -1,3 +1,5 @@
+fs = require "fs"
+
 AtomRailsDebuggerView = require './atom-rails-debugger-view'
 {CompositeDisposable} = require 'atom'
 
@@ -25,9 +27,13 @@ module.exports = AtomRailsDebugger =
     atomRailsDebuggerViewState: @atomRailsDebuggerView.serialize()
 
   toggle: ->
-    console.log 'AtomRailsDebugger was toggled!'
 
-    if @modalPanel.isVisible()
-      @modalPanel.hide()
-    else
-      @modalPanel.show()
+    editor = atom.workspace.getActiveTextEditor()
+    projectRoot = atom.project.getPaths()[0]
+    row = editor.getCursorBufferPosition().row + 1
+    path = editor.getPath()
+
+    lineToWrite = "#{path}:#{row}\n"
+
+    fs.appendFile "#{projectRoot}/breakpoints.txt", lineToWrite, (error) ->
+      console.error("Error writing breakpoint to file", error) if error
