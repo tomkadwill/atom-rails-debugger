@@ -8,7 +8,7 @@
   "activationCommands": {
     "atom-workspace": "atom-rails-debugger:toggle"
   },
-  "repository": "https://github.com/atom/atom-rails-debugger",
+  "repository": "https://github.com/tomkadwill/atom-rails-debugger",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
