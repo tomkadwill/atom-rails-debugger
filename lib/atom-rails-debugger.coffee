@@ -35,5 +35,5 @@ module.exports = AtomRailsDebugger =
 
     lineToWrite = "#{path}:#{row}\n"
 
-    fs.appendFile "#{projectRoot}/breakpoints.txt", lineToWrite, (error) ->
+    fs.appendFile "#{projectRoot}/.breakpoints", lineToWrite, (error) ->
       console.error("Error writing breakpoint to file", error) if error
