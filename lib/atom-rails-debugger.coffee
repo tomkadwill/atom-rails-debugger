@@ -27,7 +27,6 @@ module.exports = AtomRailsDebugger =
     atomRailsDebuggerViewState: @atomRailsDebuggerView.serialize()
 
   toggle: ->
-
     editor = atom.workspace.getActiveTextEditor()
     projectRoot = atom.project.getPaths()[0]
     row = editor.getCursorBufferPosition().row + 1
@@ -37,3 +36,10 @@ module.exports = AtomRailsDebugger =
 
     fs.appendFile "#{projectRoot}/.breakpoints", lineToWrite, (error) ->
       console.error("Error writing breakpoint to file", error) if error
+
+    editor = atom.workspace.getActivePaneItem()
+    range = editor.getSelectedBufferRange()
+    marker = editor.markBufferRange(range, {invalidate: 'never'})
+    decoration = editor.decorateMarker(marker, {type: 'line-number', class: "line-number-red"})
+
+  remove: ->

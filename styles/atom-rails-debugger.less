@@ -2,7 +2,86 @@
 //
 // See https://github.com/atom/atom-dark-ui/blob/master/styles/ui-variables.less
 // for a full listing of what's available.
-@import "ui-variables";
 
-.atom-rails-debugger {
+/*
+ * Your Stylesheet
+ *
+ * This stylesheet is loaded when Atom starts up and is reloaded automatically
+ * when it is changed and saved.
+ *
+ * Add your own CSS or Less to fully customize Atom.
+ * If you are unfamiliar with Less, you can read more about it here:
+ * http://lesscss.org
+ */
+
+ @import "syntax-variables";
+
+ // Using the git-diff colors so they are visible on your syntax theme.
+ @red-color: @syntax-color-removed;
+ @green-color: @syntax-color-added;
+ @blue-color: @syntax-color-renamed;
+
+/*
+ * Examples
+ * (To see them, uncomment and save)
+ */
+
+// style the background color of the tree view
+.tree-view {
+  // background-color: whitesmoke;
+}
+
+// style the background and foreground colors on the atom-text-editor-element itself
+atom-text-editor {
+  // color: white;
+  // background-color: hsl(180, 24%, 12%);
+}
+
+// To style other content in the text editor's shadow DOM, use the ::shadow expression
+atom-text-editor::shadow .cursor {
+  // border-color: red;
+}
+
+atom-text-editor::shadow .gutter .line-number {
+  &.line-number-green {
+    color: #fff;
+    background-color: @green-color;
+  }
+
+  &.line-number-blue {
+    color: #fff;
+    background-color: @blue-color;
+  }
+
+  &.line-number-red {
+    color: #fff;
+    background-color: @red-color;
+  }
+}
+
+.line {
+  &.line-green {
+    background-color: @green-color;
+  }
+
+  &.line-blue {
+    background-color: @blue-color;
+  }
+
+  &.line-red {
+    background-color: @red-color;
+  }
+}
+
+// Remember: no default styling is provided for highlight decorations.
+.highlight-green .region {
+  background-color: @green-color;
+}
+
+.highlight-blue .region {
+  background-color: @blue-color;
+}
+
+.highlight-red .region {
+  background-color: @red-color;
 }
